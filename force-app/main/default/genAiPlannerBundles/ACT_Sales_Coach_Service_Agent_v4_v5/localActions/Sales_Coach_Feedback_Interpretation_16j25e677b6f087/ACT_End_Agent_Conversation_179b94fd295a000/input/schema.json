@@ -1,0 +1,21 @@
+{
+  "required" : [ "varSessionId" ],
+  "unevaluatedProperties" : false,
+  "properties" : {
+    "varSessionId" : {
+      "title" : "varSessionId",
+      "description" : "$Context.MessagingSession.Id",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    },
+    "varTenantId" : {
+      "title" : "varTenantId",
+      "description" : "00DD30000002Pg4",
+      "lightning:type" : "lightning__textType",
+      "lightning:isPII" : false,
+      "copilotAction:isUserInput" : false
+    }
+  },
+  "lightning:type" : "lightning__objectType"
+}

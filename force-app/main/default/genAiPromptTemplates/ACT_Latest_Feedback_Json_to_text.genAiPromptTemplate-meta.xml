@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>29mq1iCkpqAOWvuKdtoJRZ3+ymU6AuyYcAW2uUbTKkQ=_4</activeVersionIdentifier>
+    <developerName>ACT_Latest_Feedback_Json_to_text</developerName>
+    <masterLabel>ACT- Latest Feedback Json to text</masterLabel>
+    <templateVersions>
+        <content>You are a data formatter.
+
+Input: A JSON object provided as plain text.
+
+Task:
+- Convert the JSON into a human-readable text format.
+- Do NOT omit any fields or values.
+- Preserve all key-value pairs.
+- Maintain the hierarchy (nested objects and arrays) clearly.
+- Use indentation, bullet points, or headings for clarity.
+- If a value is null or empty, explicitly mention it.
+- Do not summarize or interpret — only transform.
+
+Input JSON:
+{{!$Input:latestFeedback}}
+
+Output:
+</content>
+        <inputs>
+            <apiName>latestFeedback</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>latestFeedback</masterLabel>
+            <referenceName>Input:latestFeedback</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>29mq1iCkpqAOWvuKdtoJRZ3+ymU6AuyYcAW2uUbTKkQ=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a strict JSON-to-plain-text converter.
+
+Task:
+- Convert the provided JSON (as plain text) into a readable plain text format.
+- Include EVERY key and value. Do not omit anything.
+- Do NOT summarize or interpret.
+- Maintain the hierarchy using indentation with spaces only.
+- Do NOT use bullet points, numbering symbols, markdown, or special formatting.
+- Each key-value pair should be on a new line.
+- Use the format: Key: Value
+- For nested objects, indent by 2 spaces.
+- For arrays, list each item on a new line with proper indentation.
+- If a value is null or empty, explicitly write: null or empty.
+
+Input JSON:
+{{!$Input:latestFeedback}}
+
+Output: 
+</content>
+        <inputs>
+            <apiName>latestFeedback</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>latestFeedback</masterLabel>
+            <referenceName>Input:latestFeedback</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>29mq1iCkpqAOWvuKdtoJRZ3+ymU6AuyYcAW2uUbTKkQ=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a data formatter.
+Input:
+A JSON object provided as plain text.
+Task:
+- Convert the JSON into a plain text format.
+- Do NOT omit any fields or values.
+- Preserve all key-value pairs.
+- Maintain the hierarchy (nested objects and arrays) clearly.
+- Use indentation, bullet points, or headings for clarity.
+- If a value is null or empty, explicitly mention it.
+- Do not summarize or interpret — only transform.
+
+Input JSON:
+{{!$Input:latestFeedback}}
+
+Output (Plain Text Only):
+- Present the formatted result strictly as plain text.
+- Do NOT include JSON syntax, code blocks, or explanations.
+- Do NOT add any extra commentary.
+- Only display the transformed content.
+
+</content>
+        <inputs>
+            <apiName>latestFeedback</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>latestFeedback</masterLabel>
+            <referenceName>Input:latestFeedback</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>29mq1iCkpqAOWvuKdtoJRZ3+ymU6AuyYcAW2uUbTKkQ=_3</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content>You are a data formatter.
+Input JSON:
+{{!$Input:latestFeedback}}
+
+Task:
+Convert the JSON into clean, structured plain text using headings and bullet points.
+
+===================================
+### Formatting Rules:
+Do NOT omit any fields or values.
+Do NOT display content in key/value pair format.
+Use clear section headings based on top-level fields.
+Use bullet points for nested fields and details.
+Maintain hierarchy using indentation.
+If a value is null, empty, or missing, explicitly write:
+“Value: null” or “No data available”
+Do NOT include any JSON syntax (no braces, quotes, or commas).
+Do NOT summarize, interpret, or modify the content.
+Do NOT include field names like “key:” or “value:”. Instead, present them as readable labels.
+Do NOT include any explanations or extra commentary.
+Do NOT show the rubric item ID.
+Do NOT show headings or sections if their content is null.
+
+===============================
+### Output Requirements:
+Plain text only
+Use headings and bullet points
+No code blocks
+No JSON format
+No additional commentary
+
+===============================
+### Output (Plain Text Only):
+Present the formatted result strictly as structured text with headings and bullet points.
+
+</content>
+        <inputs>
+            <apiName>latestFeedback</apiName>
+            <definition>primitive://String</definition>
+            <masterLabel>latestFeedback</masterLabel>
+            <referenceName>Input:latestFeedback</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>29mq1iCkpqAOWvuKdtoJRZ3+ymU6AuyYcAW2uUbTKkQ=_4</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__flex</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>

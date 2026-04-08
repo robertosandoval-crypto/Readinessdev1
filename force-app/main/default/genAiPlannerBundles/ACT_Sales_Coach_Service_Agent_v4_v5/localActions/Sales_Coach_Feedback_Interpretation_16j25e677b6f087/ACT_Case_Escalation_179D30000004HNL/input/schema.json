@@ -1,0 +1,45 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "unevaluatedProperties": false,
+    "required": [
+        "caseDescription",
+        "caseSubject",
+        "varLearningRubricId"
+    ],
+    "properties": {
+        "caseDescription": {
+            "title": "caseDescription",
+            "description": "The description for the support case. Should be auto-generated from the conversation context and confirmed by the learner before submission.",
+            "lightning:type": "lightning__textType",
+            "lightning:isPII": false,
+            "copilotAction:isUserInput": true,
+            "copilotAction:useHydratedPrompt": false
+        },
+        "caseSubject": {
+            "title": "caseSubject",
+            "description": "The subject line for the support case. Should be auto-generated from the conversation context and confirmed by the learner. Will be appended with the Learning Rubric name.",
+            "lightning:type": "lightning__textType",
+            "lightning:isPII": false,
+            "copilotAction:isUserInput": true,
+            "copilotAction:useHydratedPrompt": false
+        },
+        "userId": {
+            "title": "userId",
+            "description": "The Salesforce User Id of the learner. Defaults to the running user if left blank.",
+            "lightning:type": "lightning__textType",
+            "lightning:isPII": false,
+            "copilotAction:isUserInput": false,
+            "copilotAction:useHydratedPrompt": false
+        },
+        "varLearningRubricId": {
+            "title": "varLearningRubricId",
+            "description": "The Learning_Rubric__c record Id from the context variable learningRubricId. Used to associate the case with the correct assessment and append the rubric name to the subject.",
+            "lightning:type": "lightning__textType",
+            "lightning:isPII": false,
+            "copilotAction:isUserInput": false,
+            "copilotAction:useHydratedPrompt": false
+        }
+    },
+    "lightning:type": "lightning__objectType"
+}

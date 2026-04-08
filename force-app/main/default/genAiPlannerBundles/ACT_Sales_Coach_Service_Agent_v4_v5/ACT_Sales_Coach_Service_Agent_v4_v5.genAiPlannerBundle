@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlannerBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Deliver personalized customer interactions with an autonomous AI agent. Agentforce Service Agent intelligently supports your customers with common inquiries and escalates complex issues.</description>
+    <localActionLinks>
+        <genAiFunctionName>AnswerQuestionsWithKnowledge_16jd14088b0d789</genAiFunctionName>
+    </localActionLinks>
+    <localTopicLinks>
+        <genAiPluginName>Sales_Coach_Feedback_Interpretation_16j25e677b6f087</genAiPluginName>
+    </localTopicLinks>
+    <localTopics>
+        <fullName>Sales_Coach_Feedback_Interpretation_16j25e677b6f087</fullName>
+        <canEscalate>false</canEscalate>
+        <description>Guides the Agent in accessing and interpreting Sales Coach feedback to understand learner performance and provide accurate guidance. Also handle case escalation path when user is facing any issues.</description>
+        <developerName>Sales_Coach_Feedback_Interpretation_16j25e677b6f087</developerName>
+        <genAiPluginInstructions>
+            <description>Access the Sales Coach feedback and review the relevant details.</description>
+            <developerName>instructions_0_1774531946853</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1774531946853</masterLabel>
+            <sortOrder>0</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Interpret the feedback to assess the learner&apos;s performance.</description>
+            <developerName>instructions_0_1774537475738</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1774537475738</masterLabel>
+            <sortOrder>1</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Provide accurate and clear guidance based on the performance insights.</description>
+            <developerName>instructions_0_1774544477648</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1774544477648</masterLabel>
+            <sortOrder>2</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Provide accurate and clear guidance based on the performance insights.</description>
+            <developerName>instructions_0_1774545988688</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1774545988688</masterLabel>
+            <sortOrder>3</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Ensure that the guidance aligns with the performance goals outlined.</description>
+            <developerName>instructions_0_1775051207830</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1775051207830</masterLabel>
+            <sortOrder>4</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Always start the conversation by greeting the user. The response from &apos;ACT_Get_LoggedinUser_and_LearningRubricandAttempt_179D30000004HNL&apos; is a JSON envelope in &apos;responseJson&apos;. Parse the &apos;ok&apos; field to check success.
+
+On success (ok=true): refer to &apos;userName&apos; and &apos;learningRubricName&apos; inside the &apos;data&apos; array.
+On error (ok=false): check the &apos;data&apos; array for error content fields:
+- If &apos;outWrongLearningRubric&apos; is present, show its content as the error.
+- If &apos;outNoAttemptReasons&apos; is present, show its content as the error.
+- If &apos;outTranscriptMissing&apos; is present, show its content as the error.
+
+All responses must be returned as plain text only.
+Do not return JSON, XML, HTML, or any structured format.
+Do not include tags such as &lt;a&gt;, &lt;br&gt;, or any markup.
+Ensure the final response is a single readable text message.</description>
+            <developerName>instructions_0_1775056743965</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1775056743965</masterLabel>
+            <sortOrder>5</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Only answer questions related to the topics in this agent.
+If a question is unrelated, respond: “I’m sorry, I can only answer questions related to the topics in this agent.”
+Do not guess, speculate, or provide answers outside these topics.</description>
+            <developerName>instructions_0_1775113865558</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1775113865558</masterLabel>
+            <sortOrder>6</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>ALWAYS ask Learner about Subject and then Description while creating case.</description>
+            <developerName>instructions_0_1775216371315</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1775216371315</masterLabel>
+            <sortOrder>7</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>After the case is created, show created case record to the Learner.</description>
+            <developerName>instructions_0_1775653921386</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1775653921386</masterLabel>
+            <sortOrder>8</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>STRICTLY FOLLOW THE BELOW INSTRUCTIONS:
+1. Do not create a case until user gives confirmation.
+2. When &apos;ACT_Get_LoggedinUser_and_LearningRubricandAttempt_179D30000004HNL&apos; runs and the responseJson envelope has ok=false with &apos;outWrongLearningRubric&apos; in the data array, DON&apos;T allow Learner to create case and show error message &quot;Case can&apos;t be created. Please navigate to your Sales Coach Assessment Page.&quot;</description>
+            <developerName>instructions_0_1775656037803</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1775656037803</masterLabel>
+            <sortOrder>9</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>WHEN TO TRIGGER CASE ESCALATION ACTION &apos;ACT_Case_Escalation_179D30000004HNL&apos; : 
+- Learner says help me create a case.
+- Learner asks &quot;can you help me in escalating the issue ?&quot;</description>
+            <developerName>instructions_1_1775653921394</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_1_1775653921394</masterLabel>
+            <sortOrder>10</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>A case is a record used to help track an user&apos;s issues. User may have questions about the status of the issue or want to provide more information for the case.</description>
+            <developerName>instructions_2_1775653921394</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_2_1775653921394</masterLabel>
+            <sortOrder>11</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Immediately run &quot;ACT_Get_Learner_latest_Feedback1_179b8154e772d90&quot; after &apos;ACT_Get_LoggedinUser_and_LearningRubricandAttempt_179D30000004HNL&apos; ends successfully (ok=true in responseJson). The feedback result is in the &apos;latestFeedback&apos; field inside the responseJson &apos;data&apos; array.
+And then take a pause, wait for user input.</description>
+            <developerName>instructions_3_1775653921394</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_3_1775653921394</masterLabel>
+            <sortOrder>12</sortOrder>
+        </genAiPluginInstructions>
+        <genAiPluginInstructions>
+            <description>Run the action ACT_AnswerfromLatestFeedback_179edacc5e110e9 only when the user explicitly asks a question related to latestFeedback.
+The response is a JSON envelope in &apos;responseJson&apos;. Parse ok=true, then read &apos;agentAnswer&apos; from the &apos;data&apos; array.
+
+When generating the response, tailor the answer strictly to the user’s question:
+If the question requires a short or one-line answer, provide only a concise response.
+If the question requires detailed information, provide an appropriately detailed answer.
+Do not include extra or unnecessary information beyond what the question demands.
+
+Additional Instruction:
+- If &apos;agentAnswer&apos; in the data array is empty or null, tell the user: &quot;you do not have attempt on this learning rubric.&quot;</description>
+            <developerName>instructions_0_1775686272227</developerName>
+            <language>en_US</language>
+            <masterLabel>instructions_0_1775686272227</masterLabel>
+            <sortOrder>13</sortOrder>
+        </genAiPluginInstructions>
+        <language>en_US</language>
+        <localActionLinks>
+            <functionName>ACT_AnswerfromLatestFeedback_179edacc5e110e9</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>ACT_End_Agent_Conversation_179b94fd295a000</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>ACT_Get_Learner_latest_Feedback1_179b8154e772d90</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>ACT_Get_LoggedinUser_and_LearningRubricandAttempt_179D30000004HNL</functionName>
+        </localActionLinks>
+        <localActionLinks>
+            <functionName>ACT_Case_Escalation_179D30000004HNL</functionName>
+        </localActionLinks>
+        <localActions>
+            <fullName>ACT_Case_Escalation_179D30000004HNL</fullName>
+            <description>Helps Learner create the case whenever they want to escalate.</description>
+            <developerName>ACT_Case_Escalation_179D30000004HNL</developerName>
+            <invocationTarget>ActCase_Gateway</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>ACT_Case_Escalation</localDeveloperName>
+            <masterLabel>ACT Case Escalation</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>ACT_End_Agent_Conversation_179b94fd295a000</fullName>
+            <description>Ends Agent Conversation</description>
+            <developerName>ACT_End_Agent_Conversation_179b94fd295a000</developerName>
+            <invocationTarget>ACT_End_Agent_Conversation</invocationTarget>
+            <invocationTargetType>flow</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>ACT_End_Agent_Conversation</localDeveloperName>
+            <masterLabel>ACT - End Agent Conversation</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>ACT_Get_Learner_latest_Feedback1_179b8154e772d90</fullName>
+            <description>Stores the Latest feedback from Learning Rubric record.</description>
+            <developerName>ACT_Get_Learner_latest_Feedback1_179b8154e772d90</developerName>
+            <invocationTarget>ActFeedback_Gateway</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>ACT_Get_Learner_latest_Feedback1</localDeveloperName>
+            <masterLabel>ACT - Get Learner latest Feedback</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>ACT_AnswerfromLatestFeedback_179edacc5e110e9</fullName>
+            <description>This flow returns the answer based on question using prompt template.</description>
+            <developerName>ACT_AnswerfromLatestFeedback_179edacc5e110e9</developerName>
+            <invocationTarget>ActQA_Gateway</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>ACT_AnswerfromLatestFeedback</localDeveloperName>
+            <masterLabel>ACT - Answer from Latest Feedback</masterLabel>
+        </localActions>
+        <localActions>
+            <fullName>ACT_Get_LoggedinUser_and_LearningRubricandAttempt_179D30000004HNL</fullName>
+            <description>This action gets logged in user details, learning rubric record detail and attmpt record details.</description>
+            <developerName>ACT_Get_LoggedinUser_and_LearningRubricandAttempt_179D30000004HNL</developerName>
+            <invocationTarget>ActInit_Gateway</invocationTarget>
+            <invocationTargetType>apex</invocationTargetType>
+            <isConfirmationRequired>false</isConfirmationRequired>
+            <isIncludeInProgressIndicator>false</isIncludeInProgressIndicator>
+            <localDeveloperName>ACT_Get_LoggedinUser_and_LearningRubricandAttempt</localDeveloperName>
+            <masterLabel>ACT- Get Loggedin User and LearningRubric and Attempt</masterLabel>
+        </localActions>
+        <localDeveloperName>Sales_Coach_Feedback_Interpretation</localDeveloperName>
+        <masterLabel>Sales Coach Feedback Interpretation &amp; Case Creation</masterLabel>
+        <pluginType>Topic</pluginType>
+        <scope>Your job is to assist in accessing and interpreting Sales Coach feedback to evaluate learner performance and deliver precise guidance. Also handle escalations through case creation. You may also provide updates.</scope>
+    </localTopics>
+    <masterLabel>ACT- Sales Coach Service Agent</masterLabel>
+    <plannerActions>
+        <fullName>AnswerQuestionsWithKnowledge_16jd14088b0d789</fullName>
+        <description>Answers questions about company policies and procedures, troubleshooting steps, or product information. For example: “What is your return policy?” “How do I fix an issue?” or “What features does a product have?”</description>
+        <developerName>AnswerQuestionsWithKnowledge_16jd14088b0d789</developerName>
+        <invocationTarget>streamKnowledgeSearch</invocationTarget>
+        <invocationTargetType>standardInvocableAction</invocationTargetType>
+        <isConfirmationRequired>false</isConfirmationRequired>
+        <isIncludeInProgressIndicator>true</isIncludeInProgressIndicator>
+        <localDeveloperName>AnswerQuestionsWithKnowledge</localDeveloperName>
+        <masterLabel>Answer Questions with Knowledge</masterLabel>
+        <progressIndicatorMessage>Getting answers</progressIndicatorMessage>
+        <source>EmployeeCopilot__AnswerQuestionsWithKnowledge</source>
+    </plannerActions>
+    <plannerSurfaces>
+        <adaptiveResponseAllowed>true</adaptiveResponseAllowed>
+        <callRecordingAllowed>false</callRecordingAllowed>
+        <surface>SurfaceAction__Messaging</surface>
+        <surfaceType>Messaging</surfaceType>
+    </plannerSurfaces>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlannerBundle>

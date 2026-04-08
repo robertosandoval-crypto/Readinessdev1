@@ -1,0 +1,27 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "unevaluatedProperties": false,
+    "required": [
+        "varRecordId"
+    ],
+    "properties": {
+        "userId": {
+            "title": "userId",
+            "description": "The Salesforce User Id of the logged-in learner. Defaults to the running user if left blank.",
+            "lightning:type": "lightning__textType",
+            "lightning:isPII": false,
+            "copilotAction:isUserInput": false,
+            "copilotAction:useHydratedPrompt": false
+        },
+        "varRecordId": {
+            "title": "varRecordId",
+            "description": "The Learning_Rubric__c record Id from the current page context. Used to retrieve the Latest_Feedback__c field for conversion to human-readable text.",
+            "lightning:type": "lightning__textType",
+            "lightning:isPII": false,
+            "copilotAction:isUserInput": false,
+            "copilotAction:useHydratedPrompt": false
+        }
+    },
+    "lightning:type": "lightning__objectType"
+}

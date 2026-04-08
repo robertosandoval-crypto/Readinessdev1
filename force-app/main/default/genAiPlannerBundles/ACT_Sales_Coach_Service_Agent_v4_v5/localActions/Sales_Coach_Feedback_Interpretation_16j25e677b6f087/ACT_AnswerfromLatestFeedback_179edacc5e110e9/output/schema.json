@@ -1,0 +1,17 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "unevaluatedProperties": false,
+    "properties": {
+        "responseJson": {
+            "title": "responseJson",
+            "description": "JSON envelope containing the action result. On success (ok=true), the data array contains: agentAnswer (the AI-generated coaching answer tailored to the learner question). If agentAnswer is empty, the learner has no attempt on this rubric.",
+            "lightning:type": "lightning__textType",
+            "lightning:isPII": false,
+            "copilotAction:isDisplayable": true,
+            "copilotAction:isUsedByPlanner": true,
+            "copilotAction:useHydratedPrompt": false
+        }
+    },
+    "lightning:type": "lightning__objectType"
+}

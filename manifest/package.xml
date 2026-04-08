@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+      <types>
+        <members>ActCase_Gateway</members>
+        <members>ActFeedback_Gateway</members>
+        <members>ActGateway_Responses</members>
+        <members>ActInit_Gateway</members>
+        <members>ActQA_Gateway</members>
+        <members>AgentCore_Constants</members>
+        <members>AgentCore_Exception</members>
+        <members>AgentCore_PermissionValidator</members>
+        <members>AgentCore_Response</members>
+        <members>AgentCore_Validation</members>
+        <name>ApexClass</name>
+    </types><types>
+        <members>ACT_Answer_from_Latest_Feedback</members>
+        <members>ACT_Create_and_Route_Support_Case</members>
+        <members>ACT_Get_Learner_Feedback</members>
+        <members>ACT_Get_Logged_in_User</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <members>ACT_Sales_Coach_Service_Agent</members>
+        <name>Bot</name>
+    </types>
+    <types>
+        <members>ACT_Sales_Coach_Service_Agent_v4_v5</members>
+        <name>GenAiPlannerBundle</name>
+    </types>
+    <types>
+        <members>ACT_AnswerfromLatestFeedback</members>
+        <members>ACT_Latest_Feedback_Json_to_text</members>
+        <members>ACT_Missing_Transcript</members>
+        <name>GenAiPromptTemplate</name>
+    </types>
+    <version>65.0</version>
+</Package>
