@@ -11,6 +11,10 @@
         <members>AgentCore_PermissionValidator</members>
         <members>AgentCore_Response</members>
         <members>AgentCore_Validation</members>
+        <members>ActInit_GatewayTest</members>
+        <members>ActFeedback_GatewayTest</members>
+        <members>ActQA_GatewayTest</members>
+        <members>ActCase_GatewayTest</members>
         <name>ApexClass</name>
     </types><types>
         <members>ACT_Answer_from_Latest_Feedback</members>
