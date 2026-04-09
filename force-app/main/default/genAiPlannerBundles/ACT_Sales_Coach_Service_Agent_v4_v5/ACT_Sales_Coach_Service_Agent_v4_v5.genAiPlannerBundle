@@ -34,7 +34,7 @@
             <sortOrder>2</sortOrder>
         </genAiPluginInstructions>
         <genAiPluginInstructions>
-            <description>Provide accurate and clear guidance based on the performance insights.</description>
+            <description>When &apos;ACT_Get_Learner_latest_Feedback1_179b8154e772d90&apos; returns a responseJson envelope with ok=false, inform the user: &quot;I wasn&apos;t able to retrieve your latest feedback. Please try again or let me know if you&apos;d like to create a case.&quot; Check the &apos;error&apos; field for additional context and the &apos;suggestions&apos; array for recovery steps.</description>
             <developerName>instructions_0_1774545988688</developerName>
             <language>en_US</language>
             <masterLabel>instructions_0_1774545988688</masterLabel>
@@ -82,7 +82,9 @@ Do not guess, speculate, or provide answers outside these topics.</description>
             <sortOrder>7</sortOrder>
         </genAiPluginInstructions>
         <genAiPluginInstructions>
-            <description>After the case is created, show created case record to the Learner.</description>
+            <description>After &apos;ACT_Case_Escalation_179D30000004HNL&apos; runs, parse the responseJson envelope.
+On success (ok=true): read the &apos;data&apos; array for the created Case record. Display to the Learner in plain text: CaseNumber, Subject, Status, and Priority.
+On error (ok=false): read the &apos;error&apos; field and display the message to the Learner. Check the &apos;suggestions&apos; array for recovery steps and share them.</description>
             <developerName>instructions_0_1775653921386</developerName>
             <language>en_US</language>
             <masterLabel>instructions_0_1775653921386</masterLabel>
