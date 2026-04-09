@@ -54,8 +54,8 @@ public with sharing class ActCase_Gateway {
 
   private static ActGateway_Responses.GatewayResponse handleRequest(Request req) {
     try {
-      // Resolve userId
-      String resolvedUserId = String.isBlank(req.userId) ? UserInfo.getUserId() : req.userId;
+      // Always use running user — the agent LLM may pass incorrect values for userId
+      String resolvedUserId = UserInfo.getUserId();
 
       // Get active Learner Profile
       List<SObject> profiles = [

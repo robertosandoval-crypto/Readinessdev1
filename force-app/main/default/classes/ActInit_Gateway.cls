@@ -41,8 +41,8 @@ public with sharing class ActInit_Gateway {
 
   private static ActGateway_Responses.GatewayResponse handleRequest(Request req) {
     try {
-      // Resolve userId — default to running user
-      String resolvedUserId = String.isBlank(req.userId) ? UserInfo.getUserId() : req.userId;
+      // Always use running user — the agent LLM may pass incorrect values for userId
+      String resolvedUserId = UserInfo.getUserId();
       String userName = UserInfo.getFirstName();
 
       // Get user's first name if not the running user
