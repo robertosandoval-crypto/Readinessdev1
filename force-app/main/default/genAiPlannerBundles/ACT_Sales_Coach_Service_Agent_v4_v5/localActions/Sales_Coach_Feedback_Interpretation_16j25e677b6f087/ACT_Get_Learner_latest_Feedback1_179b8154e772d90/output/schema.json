@@ -5,7 +5,7 @@
     "properties": {
         "responseJson": {
             "title": "responseJson",
-            "description": "JSON envelope containing the action result. On success (ok=true), the data array contains: latestFeedback (human-readable text converted from JSON). Check the summary field for status details.",
+            "description": "JSON envelope containing the action result. On success (ok=true), the data array contains: latestFeedback (raw structured JSON from the Learning Rubric record — format it into readable text before presenting to the user). Check the summary field for status details.",
             "lightning:type": "lightning__textType",
             "lightning:isPII": false,
             "copilotAction:isDisplayable": true,

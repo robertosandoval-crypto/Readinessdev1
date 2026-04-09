@@ -1,7 +1,8 @@
 /**
  * @description Invocable handler for retrieving a learner's latest feedback.
- * Queries the Learning Rubric's Latest_Feedback__c field and converts it from
- * JSON to human-readable text using the ACT_Latest_Feedback_Json_to_text prompt template.
+ * Queries the Learning Rubric's Latest_Feedback__c field and returns the raw
+ * JSON directly — the planner agent formats it for display and downstream
+ * actions (ActQA_Gateway) reason over source truth instead of an LLM rewrite.
  *
  * Replaces Flow: ACT_Get_Learner_Feedback
  * Planner action: ACT_Get_Learner_latest_Feedback1
@@ -20,7 +21,7 @@ public with sharing class ActFeedback_Gateway {
 
     @InvocableVariable(
       label='Record ID'
-      description='The Learning_Rubric__c record Id from the current page context. Used to retrieve the Latest_Feedback__c field for conversion to human-readable text.'
+      description='The Learning_Rubric__c record Id from the current page context. Used to retrieve the Latest_Feedback__c field.'
       required=true
     )
     public String varRecordId;
@@ -28,7 +29,7 @@ public with sharing class ActFeedback_Gateway {
 
   @InvocableMethod(
     label='Get Learner Latest Feedback'
-    description='Retrieves the latest feedback from the Learning Rubric record and converts it from JSON to human-readable text using the ACT_Latest_Feedback_Json_to_text prompt template.'
+    description='Retrieves the latest feedback JSON from the Learning Rubric record. Returns the raw structured feedback so the agent can format it for display and downstream actions reason over source truth.'
   )
   public static List<ActGateway_Responses.GatewayResponse> execute(List<Request> requests) {
     List<ActGateway_Responses.GatewayResponse> responses = new List<ActGateway_Responses.GatewayResponse>();
@@ -68,18 +69,17 @@ public with sharing class ActFeedback_Gateway {
         return buildEmptyFeedbackResponse('No feedback recorded on this Learning Rubric yet.');
       }
 
-      // Convert JSON feedback to readable text via prompt template
-      String readableFeedback = convertFeedbackToText(rawFeedback);
-
+      // Return the raw JSON directly — no LLM middleware rewrite.
+      // The planner agent formats for display; ActQA_Gateway reasons over source truth.
       Map<String, Object> data = new Map<String, Object>{
-        'latestFeedback' => readableFeedback
+        'latestFeedback' => rawFeedback
       };
       Map<String, Object> envelope = AgentCore_Response.buildSuccess(
         ACTION_NAME,
         new List<Map<String, Object>>{ data },
         null
       );
-      envelope.put(AgentCore_Response.FIELD_SUMMARY, 'Latest feedback retrieved and converted to text.');
+      envelope.put(AgentCore_Response.FIELD_SUMMARY, 'Latest feedback retrieved as structured JSON.');
       return new ActGateway_Responses.GatewayResponse(envelope);
 
     } catch (Exception e) {
@@ -89,38 +89,6 @@ public with sharing class ActFeedback_Gateway {
         new List<String>{ 'Verify the Learning Rubric exists and has feedback recorded.' }
       );
     }
-  }
-
-  private static String convertFeedbackToText(String rawFeedbackJson) {
-    if (AgentCore_Response.isApexTestContext()) {
-      return 'Test feedback content';
-    }
-    try {
-      ConnectApi.EinsteinPromptTemplateGenerationsInput ptInput =
-        new ConnectApi.EinsteinPromptTemplateGenerationsInput();
-      ptInput.additionalConfig = new ConnectApi.EinsteinLlmAdditionalConfigInput();
-      ptInput.additionalConfig.applicationName = 'ActFeedback_Gateway';
-      ptInput.isPreview = false;
-
-      Map<String, ConnectApi.WrappedValue> inputParams =
-        new Map<String, ConnectApi.WrappedValue>();
-      ConnectApi.WrappedValue feedbackVal = new ConnectApi.WrappedValue();
-      feedbackVal.value = rawFeedbackJson;
-      inputParams.put('Input:latestFeedback', feedbackVal);
-      ptInput.inputParams = inputParams;
-
-      ConnectApi.EinsteinPromptTemplateGenerationsRepresentation result =
-        ConnectApi.EinsteinLLM.generateMessagesForPromptTemplate(
-          'ACT_Latest_Feedback_Json_to_text', ptInput
-        );
-      if (result != null && result.generations != null && !result.generations.isEmpty()) {
-        return result.generations[0].text;
-      }
-    } catch (Exception e) {
-      // Fall back to raw JSON if prompt template fails
-      return rawFeedbackJson;
-    }
-    return rawFeedbackJson;
   }
 
   private static ActGateway_Responses.GatewayResponse buildEmptyFeedbackResponse(String reason) {

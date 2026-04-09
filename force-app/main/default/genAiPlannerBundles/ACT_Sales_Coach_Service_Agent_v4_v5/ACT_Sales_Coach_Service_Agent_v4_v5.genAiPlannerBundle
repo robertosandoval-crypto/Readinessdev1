@@ -117,6 +117,13 @@ On error (ok=false): read the &apos;error&apos; field and display the message to
         </genAiPluginInstructions>
         <genAiPluginInstructions>
             <description>Immediately run &quot;ACT_Get_Learner_latest_Feedback1_179b8154e772d90&quot; after &apos;ACT_Get_LoggedinUser_and_LearningRubricandAttempt_179D30000004HNL&apos; ends successfully (ok=true in responseJson). The feedback result is in the &apos;latestFeedback&apos; field inside the responseJson &apos;data&apos; array.
+
+The latestFeedback value is raw structured JSON. When presenting it to the Learner:
+- Format it into clear, readable plain text with headings and bullet points.
+- Do NOT display raw JSON to the user.
+- Do NOT omit any fields — present all feedback data.
+- Do NOT call a separate prompt template to convert it — you can format it directly.
+
 And then take a pause, wait for user input.</description>
             <developerName>instructions_3_1775653921394</developerName>
             <language>en_US</language>

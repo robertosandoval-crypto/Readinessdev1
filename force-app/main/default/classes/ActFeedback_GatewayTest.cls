@@ -41,8 +41,8 @@ private class ActFeedback_GatewayTest {
 
     List<Object> dataList = (List<Object>) envelope.get('data');
     Map<String, Object> data = (Map<String, Object>) dataList[0];
-    // In test context, convertFeedbackToText returns 'Test feedback content'
-    System.assertEquals('Test feedback content', data.get('latestFeedback'));
+    // Raw JSON is returned directly — no prompt template middleware
+    System.assertEquals('{"score": 7, "comments": "Good job on rapport building."}', data.get('latestFeedback'));
   }
 
   @isTest
